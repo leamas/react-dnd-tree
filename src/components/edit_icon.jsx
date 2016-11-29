@@ -40,7 +40,10 @@ class _EditIcon extends Component {
         }.bind(this, this.props.node);
         return connectDropTarget(
             <a href="#Editing" onClick={editCallback}>
-                <img src={edit_icon} className={imageClass}/>
+                <img
+                    src={edit_icon}
+                    alt="Edit node"
+                    className={imageClass}/>
             </a>
         );
     }

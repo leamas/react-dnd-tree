@@ -13,7 +13,7 @@
 // The tree operations does not interfere with whatever other node
 // properties defined.
 
-/* eslint no-console: off */
+/* eslint eqeqeq: "off", no-console: off */
 (console) ? console.log('Logging is supported.') : console.log=function(){};
 
 

@@ -38,7 +38,10 @@ module.exports = {
   nodePaths: nodePaths
 };
 
-
+// @remove-on-eject-begin
+function resolveOwn(relativePath) {
+  return path.resolve(__dirname, relativePath);
+}
 
 // config before publish: we're in ./packages/react-scripts/config/
 if (__dirname.indexOf(path.join('packages', 'react-scripts', 'config')) !== -1) {

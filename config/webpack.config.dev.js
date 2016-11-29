@@ -1,4 +1,4 @@
-var path = require('path');
+//var path = require('path');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
 var findCacheDir = require('find-cache-dir');
@@ -8,6 +8,7 @@ var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
+var combineLoaders = require('webpack-combine-loaders');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -114,19 +115,30 @@ module.exports = {
       // "style" loader turns CSS into JS modules that inject <style> tags.
       // In production, we use a plugin to extract that CSS to a file, but
       // in development "style" loader enables hot editing of CSS.
-      {
-        test: /\.css$/,
-        //loader: 'style!css?importLoaders=1!postcss'
-        loader: 'style-loader'
-      },
-      {
-        test: /\.css$/,
-        //loader: 'style!css?importLoaders=1!postcss'
-        loader: 'css-loader',
-        query: {
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]'
-        }
+      ////{
+      ////  test: /\.css$/,
+      ////  loader: 'style-loader'
+      ////},
+      ////{
+      ////  test: /\.css$/,
+      ////  loader: 'css-loader',
+      ////  query: {
+      ////    modules: true,
+      ////    localIdentName: '[name]__[local]___[hash:base64:5]'
+      ////  }
+      ////},
+
+      { test: /\.css$/,
+          loader: combineLoaders([
+              { loader: 'style' },
+              {
+                  loader: 'css',
+                  query: {
+                      modules: true,
+                      localIdentName: '[name]__[local]___[hash:base64:5]'
+                  }
+              }
+          ])
       },
 
       // JSON is not enabled by default in Webpack but both Node and Browserify

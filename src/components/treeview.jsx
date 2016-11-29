@@ -12,18 +12,21 @@
 // An obvious extension would nbe to add a onClicked callback with
 // corresponding UI. However, there is no use for that right now.
 
+/* global require */
 /* eslint no-console: off */
 (console) ? console.log('Logging is supported.') : console.log=function(){};
 
 import React, {Component}  from 'react';
 import {DragDropContext} from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import Trashcan from 'trashcan.jsx';
-import AddTool from 'add_tool.jsx';
-import BasicTree from 'basic_tree.jsx';
 
-import * as Forest from 'forest.js';
-import styles from 'treeview.css';
+import * as Forest from './forest.js';
+
+import styles from './treeview.css';
+
+import Trashcan from './trashcan.jsx';
+import AddTool from './add_tool.jsx';
+import BasicTree from './basic_tree.jsx';  // eslint-disable-line
 
 // The  overall tree (a k a forest) with Nodes, Sinks and state.
 class _TreeView extends Component {
@@ -34,11 +37,11 @@ class _TreeView extends Component {
         this.deleteNode = this.deleteNode.bind(this);
     }
 
-   // Create a new node
+    // Create a new node
     newNode(text = 'Ny kategori') {
         let nodes = this.props.contents;
         const id = Forest.findLargestId(nodes, 0);
-        let node = {id: Number(id) + 1, name: text, children: []};
+        let node = {id: Number(id) + 1, data: {name: text}, children: []};
         nodes.splice(0, 0, node);
         if (this.props.onChange)
             this.props.onChange(nodes);
@@ -57,9 +60,9 @@ class _TreeView extends Component {
     }
 
     render() {
-        if (this.props.contents == null || this.props.contents == []) {
-            console.log('rendering: empty tree');
-            return <div> {'Loading. (null)..'} </div>;
+        console.log("Treeview: " + styles.imgCell);
+        if (this.props.contents === null || this.props.contents === []) {
+            return <div> {'Loading...'} </div>;
         }
         const newNodeCallback = this.newNode.bind(null, 'Ny kategori');
         return (
@@ -70,7 +73,7 @@ class _TreeView extends Component {
                             <BasicTree
                                 contents={this.props.contents}
                                 onChange={this.props.onChange}
-                                onRenameNode={this.props.onRenameNode}
+                                onEdit={this.props.onEdit}
                                 onMoveNode={this.props.onMoveNode} />
                         </td>
                         <td className={styles.imgCell}>
@@ -89,7 +92,7 @@ class _TreeView extends Component {
 _TreeView.propTypes = {
     contents: React.PropTypes.array,
     onChange: React.PropTypes.func,
-    onRenameNode: React.PropTypes.func,
+    onEdit: React.PropTypes.func,
     onDeleteNode: React.PropTypes.func,
     onMoveNode: React.PropTypes.func,
     onAddNode: React.PropTypes.func
