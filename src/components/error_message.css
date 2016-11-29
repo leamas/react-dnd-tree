@@ -1,0 +1,10 @@
+.message {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #f86969;
+    min-width: 20em;
+    min-height: 3em;
+    display: inline-block;
+    padding: 0.5em;
+}
