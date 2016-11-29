@@ -1,18 +1,18 @@
 /* eslint no-console: off */
 (console) ? console.log('Logging is supported.') : console.log=function(){};
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import './components/add_tool.jsx';
-import Demo1 from './demo1.js';
+
+import Demo2 from './demo2.js';
 
 class App extends Component {
 
-    render() {
+   render() {
         return (
             <div>
-                <h1> First demo: </h1>
-                <Demo1 />
+                <h1> Second demo: </h1>
+                <Demo2 />
             </div>
         );
     }
