@@ -2,15 +2,19 @@ import React, {Component}  from 'react';
 
 import {DragSource} from 'react-dnd';
 import {DropTarget} from 'react-dnd';
-
 import flow from 'lodash/flow';
+import * as Config from '../config.js';
+
+import EditIcon from './edit_icon.jsx';
 
 import triangleRight from './icons/triangle-right.png';
 import triangleDown from './icons/triangle-down.png';
 
 import {ItemTypes} from './commons.js';
-
 import styles from './node.css';
+
+const NodeEditForm = require(Config.nodeEditForm);
+
 
 
 // Handle items dropped into a Node.
@@ -34,7 +38,6 @@ function nodeDropCollect(connect, monitor) {
 
 // Collected properties for the draggable Node.
 function nodeDragCollect(connect, monitor) {
-
     return {
         connectDragSource: connect.dragSource(),
         isDragging: monitor.isDragging()
@@ -79,30 +82,24 @@ class _Node extends Component {
         const collapseCallback = function(node) {
             this.props.onSetCollapsed(node.id, !node.collapsed);
         }.bind(this, node);
-        const nameCallback = function(node, event) {
-            this.props.onNameChange(node.id, event.target.value);
-        }.bind(this, node);
-        let body = <span style={textStyle}> {node.name} </span>;
+        let body = <span style={textStyle}> {node.data.name} </span>;
         if (node.editing) {
-            body = (
-                <span className={styles.outerSpan}>
-                    <form>
-                        <input
-                            type="text"
-                            value={node.name}
-                            onChange={nameCallback} />
-                    </form>
-                </span>
-            );
+            body = <NodeEditForm node={node} onEdit={this.props.onEdit} />;
         }
         return connectDragSource(connectDropTarget(
             <span key={'node:' + node.id} className="rdt_node">
                 <a href="#notused" onClick={collapseCallback}>
                     <img src={triangle}
                         style={arrowStyle}
+                        alt="Collapse/expand node"
                         className={styles.arrows} />
                 </a>
                 {body}
+                <span className={styles.pen}>
+                    <EditIcon
+                        setEditMode={this.props.onSetEditMode}
+                        node={node} />
+                </span>
             </span>
         ));
     }
@@ -111,7 +108,8 @@ class _Node extends Component {
 _Node.propTypes = {
     node: React.PropTypes.object.isRequired,
     onSetCollapsed: React.PropTypes.func.isRequired,
-    onNameChange: React.PropTypes.func.isRequired,
+    onEdit: React.PropTypes.func.isRequired,
+    onSetEditMode: React.PropTypes.func.isRequired,
     onDroppedInto: React.PropTypes.func.isRequired,
     connectDragSource: React.PropTypes.func.isRequired,
     connectDropTarget: React.PropTypes.func.isRequired,

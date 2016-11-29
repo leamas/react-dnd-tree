@@ -4,7 +4,9 @@ const testdata = [{
             "children": [],
             "id": "5",
             "is_deletable": true,
-            "name": "Fritidskontoret",
+            data: {
+                name: "Fritidskontoret"
+            },
             "services": []
         },
         {
@@ -12,27 +14,36 @@ const testdata = [{
             "id": "67",
             "is_deletable": true,
             "name": "\u00d6ppettider",
+            data: {
+                name: "\u00d6ppettider"
+            },
             "services": []
         },
         {
             "children": [],
             "id": "77",
             "is_deletable": true,
-            "name": "ivars verkstad",
+            data: {
+                name: "Ivars verkstad"
+            },
             "services": []
         },
         {
             "children": [],
             "id": "70",
             "is_deletable": true,
-            "name": "Skolmat",
+            data: {
+                name: "Skolmat"
+            },
             "services": []
         },
         {
             "children": [],
             "id": "101",
             "is_deletable": true,
-            "name": "skidskola",
+            data: {
+                name: "Skidskola"
+            },
             "services": []
         },
         {
@@ -41,27 +52,35 @@ const testdata = [{
                     "children": [],
                     "id": "203",
                     "is_deletable": true,
-                    "name": "daghemmen",
-                    "services": []
+                    "services": [],
+                    data: {
+                        name: "daghemmen"
+                    }
                 },
                 {
                     "children": [],
                     "id": "71",
                     "is_deletable": true,
-                    "name": "skolbussarna",
+                    data: {
+                        name: "Skolbussarna"
+                    },
                     "services": []
                 },
                 {
                     "children": [],
                     "id": "177",
                     "is_deletable": true,
-                    "name": "administrationen",
+                    data: {
+                        name: "administrationen"
+                    },
                     "services": []
                 }
             ],
             "id": "2",
             "is_deletable": false,
-            "name": "skolf\u00f6rvaltningen",
+            data: {
+                name: "skolf\u00f6rvaltningen"
+            },
             "services": []
         },
         {
@@ -70,20 +89,26 @@ const testdata = [{
                     "children": [],
                     "id": "36",
                     "is_deletable": true,
-                    "name": "Byggnadslov",
+                    data: {
+                        name: "Byggnadslov"
+                    },
                     "services": []
                 },
                 {
                     "children": [],
                     "id": "183",
                     "is_deletable": true,
-                    "name": "tomteverkstaden",
+                    data: {
+                        name: "tomteverkstaden"
+                    },
                     "services": []
                 }
             ],
             "id": "3",
             "is_deletable": false,
-            "name": "Tekniska kontoret",
+            data: {
+                name: "Tekniska kontoret"
+            },
             "services": []
         },
         {
@@ -92,47 +117,61 @@ const testdata = [{
                     "children": [],
                     "id": "6",
                     "is_deletable": true,
-                    "name": "Utst\u00e4llningarna (konst)",
+                    data: {
+                        name: "Utst\u00e4llningarna (konst)"
+                    },
                     "services": []
                 },
                 {
                     "children": [],
                     "id": "96",
                     "is_deletable": true,
-                    "name": "Konserter",
+                    data: {
+                        name: "Konserter"
+                    },
                     "services": []
                 },
                 {
                     "children": [],
                     "id": "15",
                     "is_deletable": true,
-                    "name": "En annan sak",
+                    data: {
+                        name: "En annan sak"
+                    },
                     "services": []
                 },
                 {
                     "children": [],
                     "id": "93",
                     "is_deletable": true,
-                    "name": "Kulturhuset",
+                    data: {
+                        name: "Kulturhuset"
+                    },
                     "services": []
                 },
                 {
                     "children": [],
                     "id": "179",
                     "is_deletable": true,
-                    "name": "Musikens makt",
+                    data: {
+                        name: "Musikens makt"
+                    },
                     "services": []
                 }
             ],
             "id": "4",
             "is_deletable": false,
-            "name": "Kulturen",
+            data: {
+                name: "Kulturen"
+            },
             "services": []
         }
     ],
     "id": "1",
     "is_deletable": false,
-    "name": "ImseVimse Kommun",
+    data: {
+        name: "ImseVimse Kommun"
+    },
     "services": []
 }];
 

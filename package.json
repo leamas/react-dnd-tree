@@ -1,6 +1,11 @@
 {
-  "name": "react-dnd-tree",
+  "name": "@leamas/react-dnd-tree",
   "version": "0.1.0",
+  "description": "Interactive, drag-and.drop react treeview",
+  "homepage": "https://github.com/leamas/react-dnd-tree",
+  "keywords": ["dnd", "tree", "react"],
+  "license": "GPL-2.0+",
+  "main": "tree.jsx",
   "private": true,
   "devDependencies": {
     "autoprefixer": "6.5.1",
@@ -51,11 +56,13 @@
   },
   "dependencies": {
     "lodash": "^4.17.2",
-    "react": "^15.4.1",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
-    "react-dom": "^15.4.1",
     "react-scripts": "^0.7.0"
+  },
+  "peerDependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
   },
   "scripts": {
     "start": "node scripts/start.js",

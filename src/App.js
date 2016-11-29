@@ -1,25 +1,18 @@
+/* eslint no-console: off */
+(console) ? console.log('Logging is supported.') : console.log=function(){};
+
 import React, { Component } from 'react';
 import './App.css';
 import './components/add_tool.jsx';
-import testdata from './testdata.js';
-import BasicTree from './components/basic_tree.jsx';
+import Demo1 from './demo1.js';
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {contents: testdata};
-    }
-
     render() {
-        const onChange =
-            function(c) {this.setState({contents: c}); }.bind(this);
         return (
-            <div className="App">
+            <div>
                 <h1> First demo: </h1>
-                <BasicTree
-                    contents={this.state.contents}
-                    onChange={onChange} />
+                <Demo1 />
             </div>
         );
     }

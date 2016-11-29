@@ -42,7 +42,10 @@ class _Trashcan extends Component {
         const icon = this.props.hovered ? trash_open : trash;
         return connectDropTarget(
             <span className="rdt_trash">
-               <img src={icon} className={styles.img} />
+                <img
+                    src={icon}
+                    className={styles.img}
+                    alt="Drop to delete item" />
             </span>
         );
     }

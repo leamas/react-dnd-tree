@@ -15,12 +15,9 @@
 (console) ? console.log('Logging is supported.') : console.log=function(){};
 
 import React, {Component}  from 'react';
-import {DragDropContext} from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
 
 import Node from './node.jsx';
 import Sink from './sink.jsx';
-import EditIcon from './edit_icon.jsx';
 import * as Forest from './forest.js';
 
 
@@ -45,14 +42,14 @@ Indent.propTypes = {
 
 
 // The  overall tree (a k a forest) with Nodes, Sinks and state.
-class _BasicTree extends Component {
+export default class BasicTree extends Component {
 
     constructor(props) {
         super(props);
         this.dropIntoNode = this.dropIntoNode.bind(this);
         this.dropAfterNode = this.dropAfterNode.bind(this);
         this.setCollapsed = this.setCollapsed.bind(this);
-        this.setName = this.setName.bind(this);
+        this.onEdit = this.onEdit.bind(this);
         this.setEditMode = this.setEditMode.bind(this);
     }
 
@@ -84,25 +81,27 @@ class _BasicTree extends Component {
     // Given id and a boolean value update node's collapsed property.
     setCollapsed(id, collapsed) {
         let nodes = this.props.contents;
-        Forest.setAttribute(nodes, id, 'collapsed', collapsed);
+        nodes = Forest.setAttribute(nodes, id, 'collapsed', collapsed);
         if (this.props.onChange)
             this.props.onChange(nodes);
     }
 
-    // Given id and a string update node's name.
-    setName(id, name) {
+    // Given id and an object update node's data. By default,
+    // only data.name is defined; using custom NodeEditForm
+    // might change this.
+    onEdit(id, data) {
         let nodes = this.props.contents;
-        Forest.setAttribute(nodes, id, 'name', name);
+        Forest.setAttribute(nodes, id, 'data', data);
         if (this.props.onChange)
             this.props.onChange(nodes);
-        if (this.props.onRenameNode)
-            this.props.onRenameNode(id, name);
+        if (this.props.onEdit)
+            this.props.onEdit(id, data);
     }
 
     // Given id and a boolean value update node's editing property.
     setEditMode(id, value) {
-        let nodes = this.props.contents;
-        Forest.setAttribute(this.props.contents, id, 'editing', value);
+        const nodes =
+            Forest.setAttribute(this.props.contents, id, 'editing', value);
         if (this.props.onChange)
             this.props.onChange(nodes);
     }
@@ -112,7 +111,7 @@ class _BasicTree extends Component {
         const node = nodes[ix];
         if (!node)
             return <div> </div>;
-        let width = (indent + node.name.length) * 3 / 4;
+        let width = (indent + node.data.name.length) * 3 / 4;
         width = '' + width + 'em';
         const nodeStyle = {display: 'block'};
         const key = '' + ix + '-' + node.id;
@@ -123,13 +122,13 @@ class _BasicTree extends Component {
                 <Node
                     node={node}
                     onSetCollapsed={this.setCollapsed}
-                    onNameChange={this.setName}
-                    onDroppedInto={this.dropIntoNode} />
-                <EditIcon setEditMode={this.setEditMode} node={node} />
+                    onEdit={this.onEdit.bind(this)}
+                    onDroppedInto={this.dropIntoNode}
+                    onSetEditMode={this.setEditMode} />
                 <Sink
                     width={width}
                     indent={sinkIndent}
-                    peerId={parseInt(node.id)}
+                    peerId={parseInt(node.id, 10)}
                     onDroppedInto={this.dropAfterNode}/>
                 {
                     this.renderChildren(
@@ -162,14 +161,9 @@ class _BasicTree extends Component {
 }
 
 
-_BasicTree.propTypes = {
+BasicTree.propTypes = {
     contents: React.PropTypes.array,
     onChange: React.PropTypes.func,
-    onRenameNode: React.PropTypes.func,
+    onEdit: React.PropTypes.func,
     onMoveNode: React.PropTypes.func,
 };
-
-const BasicTree = DragDropContext(HTML5Backend)(_BasicTree);
-
-export default BasicTree;
-export {_BasicTree};
