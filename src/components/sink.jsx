@@ -37,7 +37,7 @@ class _Sink extends Component {
         const width = '' +  (this.props.indent + 4) + 'em';
         const visibility = this.props.hovered ? 'visible' : 'hidden';
         const color = this.props.hovered ? '#949494' : 'transparent';
-        const height = '0.25em';
+        const height = this.props.hovered ? '0.6em' : '0.25em';
         const boxStyle = {
             display: 'inline-block',
             height: height,
