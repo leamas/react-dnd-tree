@@ -3,9 +3,9 @@ import React, {Component}  from 'react';
 import {DragSource} from 'react-dnd';
 import {DropTarget} from 'react-dnd';
 import flow from 'lodash/flow';
-import * as Config from '../config.js';
 
 import EditIcon from './edit_icon.jsx';
+import NodeEditForm  from './node_editform.jsx';
 
 import triangleRight from './icons/triangle-right.png';
 import triangleDown from './icons/triangle-down.png';
@@ -13,8 +13,11 @@ import triangleDown from './icons/triangle-down.png';
 import {ItemTypes} from './commons.js';
 import styles from './node.css';
 
-const NodeEditForm = require(Config.nodeEditForm);
+import config from 'config.json';
+console.log("Imported config: %o", config);
 
+
+// Set up configuration object...
 
 
 // Handle items dropped into a Node.
@@ -84,8 +87,25 @@ class _Node extends Component {
         }.bind(this, node);
         let body = <span style={textStyle}> {node.data.name} </span>;
         if (node.editing) {
-            body = <NodeEditForm node={node} onEdit={this.props.onEdit} />;
+            if (this.props.options.editForm)
+                body = this.props.options.editForm(this.props)
+            else
+                body = <NodeEditForm node={node} onEdit={this.props.onEdit} />;
         }
+        let editIcon = <span />;
+        var enableEdit = config.enableEdit;
+        if (this.props.options)
+            enableEdit = Boolean(this.props.options.enableEdit);
+        if (enableEdit) {
+            editIcon =
+                <span className={styles.pen}>
+                    <EditIcon
+                        setEditMode={this.props.onSetEditMode}
+                        node={node} />
+                </span>
+            ;
+        }
+
         return connectDragSource(connectDropTarget(
             <span key={'node:' + node.id} className="rdt_node">
                 <a href="#notused" onClick={collapseCallback}>
@@ -95,11 +115,7 @@ class _Node extends Component {
                         className={styles.arrows} />
                 </a>
                 {body}
-                <span className={styles.pen}>
-                    <EditIcon
-                        setEditMode={this.props.onSetEditMode}
-                        node={node} />
-                </span>
+                {editIcon}
             </span>
         ));
     }

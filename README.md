@@ -53,6 +53,7 @@ methods.
 | onChange    | function onChange(contents) called when data is changed       |
 | onEdit      | function onEdit(id, data), called when user edits a node.     |
 | onMoveNode  | function(newParent, oldparent), called when user moves a node.|
+| options     | General options, see below.                                   |
 
 ## TreeView
 
@@ -80,6 +81,30 @@ nodes. Each node is an object with some known properties:
 The tree operations does not interfere with whatever other node
 properties defined.
 
+## Options
+
+Most components shares a common *options* property, an object  defining
+various application configuration.
+
+ - enableEdit: boolean flag to enable/disable user edit of node names.
+ - formEdit: function(props) returning a form for editing a node, presumable
+   with other properties than just the default name. See
+   [src/demo3.js](src/demo3.js).
+
+## Component structure and classname.
+
+Many components refers to a *className* intended for styling. None of these
+classes are used internally.
+
+     TreeView   [rdt_view]
+     |
+     --> BasicTree [rdt_tree]
+         |
+         +-> Node  [rdt_node]
+         |
+         --> Sink  [rdt_sink]
+
+     ErrorMessage  [no class]
 
 ## Server interaction
 

@@ -75,6 +75,7 @@ module.exports = {
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
+    modulesDirectories: ['appconfig', 'node_modules'],
     extensions: ['.js', '.json', '.jsx', ''],
     alias: {
       // Support React Native Web
@@ -90,15 +91,14 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         loader: 'eslint',
-        include: paths.appSrc,
       }
     ],
     loaders: [
       // Process JS with Babel.
       {
         test: /\.(js|jsx)$/,
-        include: paths.appSrc,
         loader: 'babel',
+        exclude: /node_modules/,
         query: {
 
           // This is a feature of `babel-loader` for webpack (not Babel itself).

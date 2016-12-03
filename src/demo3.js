@@ -51,6 +51,38 @@ export default class Demo2 extends Component {
             + ", new length: " + nodes.length);
     }
 
+    editForm(props) {
+        const node = props.node;
+        const outerStyle = {display: 'inline-block' };
+        const nameCallback = function(id, event) {
+            node.data.name = event.target.value;
+            props.onEdit(node.id, node.data);
+        }.bind(this, node.id);
+        const myValue = node.data.myValue ? node.data.myValue : false;
+        const myCallback = function(id, event) {
+            node.data.myValue = event.target.checked;
+            props.onEdit(node.id, node.data);
+        }.bind(this, node.id);
+        return (
+            <span style={outerStyle}>
+                <form>
+                    <input
+                        type="text"
+                        value={node.data.name}
+                        onChange={nameCallback} />
+                    <br />
+                    {'My own property'}
+                    <input
+                        type="checkbox"
+                        name="myValue"
+                        value={myValue}
+                        checked={myValue}
+                        onChange={myCallback} />
+                </form>
+            </span>
+        );
+    }
+
     render() {
         const onChange = function(c) {this.setState({contents: c}); }.bind(this);
         return (
@@ -58,7 +90,8 @@ export default class Demo2 extends Component {
                 <TreeView
                     contents={this.state.contents}
                     onChange={onChange}
-                    onEdit={this.onEdit.bind(this)} />
+                    onChange={onChange}
+                    options={{enableEdit: true, editForm: this.editForm}} />
             </div>
         );
     }

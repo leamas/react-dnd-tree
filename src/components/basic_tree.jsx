@@ -124,7 +124,8 @@ export default class BasicTree extends Component {
                     onSetCollapsed={this.setCollapsed}
                     onEdit={this.onEdit.bind(this)}
                     onDroppedInto={this.dropIntoNode}
-                    onSetEditMode={this.setEditMode} />
+                    onSetEditMode={this.setEditMode}
+                    options={this.props.options} />
                 <Sink
                     width={width}
                     indent={sinkIndent}
@@ -166,4 +167,5 @@ BasicTree.propTypes = {
     onChange: React.PropTypes.func,
     onEdit: React.PropTypes.func,
     onMoveNode: React.PropTypes.func,
+    options: React.PropTypes.object
 };

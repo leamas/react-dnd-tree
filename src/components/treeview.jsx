@@ -74,7 +74,8 @@ class _TreeView extends Component {
                                 contents={this.props.contents}
                                 onChange={this.props.onChange}
                                 onEdit={this.props.onEdit}
-                                onMoveNode={this.props.onMoveNode} />
+                                onMoveNode={this.props.onMoveNode}
+                                options={this.props.options} />
                         </td>
                         <td className={styles.imgCell}>
                             <AddTool onNewNode={newNodeCallback} />
@@ -95,7 +96,8 @@ _TreeView.propTypes = {
     onEdit: React.PropTypes.func,
     onDeleteNode: React.PropTypes.func,
     onMoveNode: React.PropTypes.func,
-    onAddNode: React.PropTypes.func
+    onAddNode: React.PropTypes.func,
+    options: React.PropTypes.object
 };
 
 const TreeView = DragDropContext(HTML5Backend)(_TreeView);

@@ -51,7 +51,7 @@ class _Sink extends Component {
             backgroundColor: color,
         };
         return connectDropTarget(
-            <div style={divStyle}>
+            <div style={divStyle} className="rdt_sink">
                 <span style={boxStyle} />
             </div>
         );

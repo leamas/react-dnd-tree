@@ -1,4 +1,4 @@
-var path = require('path');
+//var path = require('path');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -81,6 +81,7 @@ module.exports = {
     // We also include JSX as a common component filename extension to support
     // some tools, although we do not recommend using it, see:
     // https://github.com/facebookincubator/create-react-app/issues/290
+    modulesDirectories: ['appconfig', 'node_modules'],
     extensions: ['.js', '.json', '.jsx', ''],
     alias: {
       // Support React Native Web
@@ -96,31 +97,18 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         loader: 'eslint',
-        include: paths.appSrc
       }
     ],
     loaders: [
       // Process JS with Babel.
       {
         test: /\.(js|jsx)$/,
-        include: paths.appSrc,
         loader: 'babel',
+        exclude: /node_modules/,
 
       },
-      // The notation here is somewhat confusing.
-      // "postcss" loader applies autoprefixer to our CSS.
-      // "css" loader resolves paths in CSS and adds assets as dependencies.
-      // "style" loader normally turns CSS into JS modules injecting <style>,
-      // but unlike in development configuration, we do something different.
-      // `ExtractTextPlugin` first applies the "postcss" and "css" loaders
-      // (second argument), then grabs the result CSS and puts it into a
-      // separate file in our build process. This way we actually ship
-      // a single CSS file in production instead of JS code injecting <style>
-      // tags. If you use code splitting, however, any async bundles will still
-      // use the "style" loader inside the async code so CSS from them won't be
-      // in the main CSS file.
-
       // Modified - css modules support.
+      // http://javascriptplayground.com/blog/2016/07/css-modules-webpack-react/
       { test: /\.css$/,
           loader: combineLoaders([
               { loader: 'style' },
