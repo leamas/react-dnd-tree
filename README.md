@@ -5,6 +5,8 @@
 This is a interactive, drag-and-drop and react-based treeview. It focuses on
 the generic tree operations: move, rename, add and delete.
 
+This page is best viewed at [github](http://github.com/leamas/react-dnd-tree).
+
 
 ![Screenshot](misc/screendump.png)
 
@@ -47,7 +49,7 @@ functionalities.
 
 ### BasicTree
 
-Unless stated, all properties are optional. See src/demo3.js for more info on
+Unless stated, all properties are optional. See the demo files for more info on
 methods.
 
 | Prop        | What                                                          |
@@ -60,7 +62,7 @@ methods.
 
 ## TreeView
 
-Treeview adds more props to add/delete items:
+TreeView adds more props to add/delete items:
 
 
 | Prop            | What                                                     |
@@ -74,23 +76,23 @@ Treeview adds more props to add/delete items:
 The tree is actually not really a tree but a forest - the root element is a list of
 nodes. Each node is an object with some known properties:
 
- - id: int, must be unique and > 0.
- - data: object. The node's properties. By default just the user
-   visible label data.name is defined. data.icon is reserved.
- - children: child list, possibly [].
- - collapsed: boolean, if child list is displayed or not.
- - editing: boolean, if node is currently being edited.
+ - id: int - must be unique and > 0.
+ - data: object - the node's properties. By default just the user
+   visible label *data.name* is defined. *data.icon* is reserved.
+ - children: list [node] -  child list, possibly [].
+ - collapsed: boolean - if child list is displayed or not.
+ - editing: boolean - if node is currently being edited.
 
 The tree operations does not interfere with whatever other node
 properties defined.
 
 ## Options
 
-Most components shares a common *options* property, an object  defining
-various application configuration.
+Some components shares a common *options* property, an object  defining
+various application configuration:
 
- - enableEdit: boolean flag to enable/disable user edit of node names.
- - formEdit: function(node, onEdit) returning a form for editing a node,
+ - enableEdit: boolean - flag to enable/disable user edit of node names.
+ - formEdit: function(node, onEdit) - returns a form for editing a node,
    presumable with other properties than just the default name. See
    [src/demo3.js](src/demo3.js).
 
@@ -103,16 +105,16 @@ classes are used internally.
      |
      --> BasicTree [rdt_tree]
          |
-         +-> Node  [rdt_node]
+         +-> Node      [rdt_node]
          |
-         --> Sink  [rdt_sink]
+         --> Sink      [rdt_sink]
 
      ErrorMessage  [no class]
 
 ## Server interaction
 
 All operations are done locally without waiting for server response. If the server
-update fails, there is a ErrorMessage component which can be used - by default,
+update fails, there is an ErrorMessage component which can be used. By default,
 it displays a red box in the bottom-right display corner.
 
 All changes of data triggers a call to the onChange function property. The other
