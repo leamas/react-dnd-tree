@@ -1,6 +1,6 @@
 {
   "name": "@leamas/react-dnd-tree",
-  "version": "0.1.0-alpha",
+  "version": "0.1.0",
   "description": "Interactive, drag-and.drop react treeview",
   "homepage": "https://github.com/leamas/react-dnd-tree",
   "keywords": [
@@ -11,7 +11,7 @@
   ],
   "license": "GPL-2.0+",
   "main": "tree.jsx",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
