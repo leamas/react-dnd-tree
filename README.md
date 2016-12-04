@@ -15,9 +15,8 @@ Main characteristics:
   - Stateless.
   - Server can be updated using a single onChange property or using
     properties fired at specific events.
-  - Several components available to use the thing in different ways
   - Optimistic update strategy, data is updated without waiting for server.
-  - The dependency list is, besides react, just lodash.
+  - Several components available to use the thing in different ways
   - GPL licensed.
 
 ## Usage
@@ -31,14 +30,18 @@ and UI where user can add and delete nodes in the tree. Example code in
 [src/demo2.js](src/demo2.js), screenshot above and a live demo at
 http://mumin.crabdance.com.
 
-Here is also hooks for users who wants to add more properties than  just a name
-to each  node. Using these hooks a user can redefine the form use to edit a
+demo1 and demo2 assumes that the server supports the onChange semantics. Some
+servers does not and requires the client to use separate functions such as
+onMoveNode or onEdit. Example code in [src/demo4.js](src/demo4.js).
+
+Here is also hooks for users who wants to add more properties than just a name
+to each  node. Using these hooks a user can redefine the form used to edit a
 node's properties. Example code in [demo3.js](src/demo3.js).
 
 In general, you should be able to pick one of the demos and adapt it by
-implementing the stub routines receiving and writing server data. It is also
-possible to combine the basic components like BasicTree, AddTool and Trashcan
-into new layouts and functionalities.
+implementing the stub routines. It is also possible to combine the basic
+components like BasicTree, AddTool and Trashcan into new layouts and
+functionalities.
 
 ## Properties
 
@@ -72,8 +75,8 @@ The tree is actually not really a tree but a forest - the root element is a list
 nodes. Each node is an object with some known properties:
 
  - id: int, must be unique and > 0.
- - data: object. The node's edited properties. By default just the user
-   visible label data.name is defined.
+ - data: object. The node's properties. By default just the user
+   visible label data.name is defined. data.icon is reserved.
  - children: child list, possibly [].
  - collapsed: boolean, if child list is displayed or not.
  - editing: boolean, if node is currently being edited.
@@ -87,8 +90,8 @@ Most components shares a common *options* property, an object  defining
 various application configuration.
 
  - enableEdit: boolean flag to enable/disable user edit of node names.
- - formEdit: function(props) returning a form for editing a node, presumable
-   with other properties than just the default name. See
+ - formEdit: function(node, onEdit) returning a form for editing a node,
+   presumable with other properties than just the default name. See
    [src/demo3.js](src/demo3.js).
 
 ## Component structure and classname.

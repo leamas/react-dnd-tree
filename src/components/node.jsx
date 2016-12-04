@@ -87,8 +87,8 @@ class _Node extends Component {
         }.bind(this, node);
         let body = <span style={textStyle}> {node.data.name} </span>;
         if (node.editing) {
-            if (this.props.options.editForm)
-                body = this.props.options.editForm(this.props)
+            if ( this.props.options && this.props.options.editForm)
+                body = this.props.options.editForm(node, this.props.onEdit)
             else
                 body = <NodeEditForm node={node} onEdit={this.props.onEdit} />;
         }

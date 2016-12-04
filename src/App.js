@@ -1,12 +1,7 @@
-/* eslint no-console: off */
-(console) ? console.log('Logging is supported.') : console.log=function(){};
-
-import React, { Component } from 'react';
-import './App.css';
-import './components/add_tool.jsx';
+import React, {Component } from 'react';
 import Demo1 from './demo1.js';
 
-class App extends Component {
+export default  class App extends Component {
 
     render() {
         return (
@@ -17,5 +12,3 @@ class App extends Component {
         );
     }
 }
-
-export default App;
