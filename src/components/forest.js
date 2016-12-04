@@ -14,7 +14,7 @@
 // properties defined.
 
 /* eslint eqeqeq: "off", no-console: off */
-(console) ? console.log('Logging is supported.') : console.log=function(){};
+if (!console) console.log = function () {};
 
 
 // Set initial values for all nodes.

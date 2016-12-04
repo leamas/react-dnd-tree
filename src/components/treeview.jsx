@@ -14,7 +14,7 @@
 
 /* global require */
 /* eslint no-console: off */
-(console) ? console.log('Logging is supported.') : console.log=function(){};
+if (!console) console.log = function () {};
 
 import React, {Component}  from 'react';
 import {DragDropContext} from 'react-dnd';
