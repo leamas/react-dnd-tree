@@ -60,7 +60,6 @@ class _TreeView extends Component {
     }
 
     render() {
-        console.log("Treeview: " + styles.imgCell);
         if (this.props.contents === null || this.props.contents === []) {
             return <div> {'Loading...'} </div>;
         }

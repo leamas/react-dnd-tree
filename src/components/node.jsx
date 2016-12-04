@@ -14,10 +14,6 @@ import {ItemTypes} from './commons.js';
 import styles from './node.css';
 
 import config from 'config.json';
-console.log("Imported config: %o", config);
-
-
-// Set up configuration object...
 
 
 // Handle items dropped into a Node.
