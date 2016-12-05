@@ -2,10 +2,10 @@
 
 ## General
 
-This is a interactive, drag-and-drop and react-based treeview. It focuses on
-the generic tree operations: move, rename, add and delete.
-
 This page is best viewed at [github](http://github.com/leamas/react-dnd-tree).
+
+react-dnd-tree is a drag-and-drop and react-based treeview. It focuses on
+the generic tree operations: move, rename, add and delete.
 
 
 ![Screenshot](misc/screendump.png)
@@ -15,8 +15,8 @@ Main characteristics:
 
   - Based on react's drag and drop library.
   - Stateless.
-  - Server can be updated using a single onChange property or using
-    properties fired at specific events.
+  - Server can be updated using a single onChange callback or using
+    callback properties fired at specific events.
   - Optimistic update strategy, data is updated without waiting for server.
   - Several components available to use the thing in different ways
   - GPL licensed.
@@ -28,7 +28,7 @@ interface. This is a plain tree allowing user to move and rename nodes.
 Example code in [src/demo1.js](src/demo1.js)
 
 Another option is using the default TreeView interface. This adds functionality
-and UI where user can add and delete nodes in the tree. Example code in
+and UI where user can add and delete tree nodes. Example code in
 [src/demo2.js](src/demo2.js), screenshot above and a live demo at
 http://mumin.crabdance.com.
 
@@ -52,13 +52,13 @@ functionalities.
 Unless stated, all properties are optional. See the demo files for more info on
 methods.
 
-| Prop        | What                                                          |
-|-------------|---------------------------------------------------------------|
-| contents    | The actual data, see below. Mandatory.                        |
-| onChange    | function onChange(contents) called when data is changed       |
-| onEdit      | function onEdit(id, data), called when user edits a node.     |
-| onMoveNode  | function(newParent, oldparent), called when user moves a node.|
-| options     | General options, see below.                                   |
+| Prop        | What                                                           |
+|-------------|----------------------------------------------------------------|
+| contents    | The actual data, see below. Mandatory.                         |
+| onChange    | function onChange(contents) - called when contents is changed  |
+| onEdit      | function onEdit(id, data) - called when user edits a node.     |
+| onMoveNode  | function(newParent, oldparent) - called when user moves a node.|
+| options     | General options, see below.                                    |
 
 ## TreeView
 
@@ -67,8 +67,8 @@ TreeView adds more props to add/delete items:
 
 | Prop            | What                                                     |
 |-----------------|----------------------------------------------------------|
-| onDeleteNode    | function onDelete(id), called when user deletes a node.  |
-| onAddNode       | function onAddNode(nodes, text, id)  - user adds a node  |
+| onDeleteNode    | function onDelete(id) - called when user deletes a node. |
+| onAddNode       | function onAddNode(nodes, text, id) - user adds a node.  |
 
 
 ## Data model
@@ -99,17 +99,22 @@ various application configuration:
 ## Component structure and classname.
 
 Many components refers to a *className* intended for styling. None of these
-classes are used internally.
+are used internally.
 
      TreeView   [rdt_view]
      |
-     --> BasicTree [rdt_tree]
-         |
-         +-> Node      [rdt_node]
-         |
-         --> Sink      [rdt_sink]
+     +--> Trashcan  [rdt_trashcan]
+     |
+     +--- AddTool   [rdt_add]
+     |
+     +--> BasicTree [rdt_tree]
+           |
+           +---> Node      [rdt_node]
+           |
+           ----> Sink      [rdt_sink]
 
-     ErrorMessage  [no class]
+
+     ErrorMessage  (no class)
 
 ## Server interaction
 
