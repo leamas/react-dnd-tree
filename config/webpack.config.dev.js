@@ -110,24 +110,8 @@ module.exports = {
           })
         }
       },
-      // "postcss" loader applies autoprefixer to our CSS.
-      // "css" loader resolves paths in CSS and adds assets as dependencies.
-      // "style" loader turns CSS into JS modules that inject <style> tags.
-      // In production, we use a plugin to extract that CSS to a file, but
-      // in development "style" loader enables hot editing of CSS.
-      ////{
-      ////  test: /\.css$/,
-      ////  loader: 'style-loader'
-      ////},
-      ////{
-      ////  test: /\.css$/,
-      ////  loader: 'css-loader',
-      ////  query: {
-      ////    modules: true,
-      ////    localIdentName: '[name]__[local]___[hash:base64:5]'
-      ////  }
-      ////},
-
+      // css modules setup:
+      //  http://javascriptplayground.com/blog/2016/07/css-modules-webpack-react/
       { test: /\.css$/,
           loader: combineLoaders([
               { loader: 'style' },
