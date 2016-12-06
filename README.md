@@ -19,7 +19,7 @@ Main characteristics:
     callback properties fired at specific events.
   - Optimistic update strategy, data is updated without waiting for server.
   - Several components available to use the thing in different ways
-  - GPL licensed.
+  - GPL 2.0+ licensed.
 
 ## Usage
 
@@ -54,7 +54,7 @@ methods.
 
 | Prop        | What                                                           |
 |-------------|----------------------------------------------------------------|
-| contents    | The actual data, see below. Mandatory.                         |
+| contents    | The actual data, see Data Model below. Mandatory.              |
 | onChange    | function onChange(contents) - called when contents was changed.|
 | onEdit      | function onEdit(node) - called when user edited a node.        |
 | onMoveNode  | function(newParent, oldparent) - called when user moved a node.|
@@ -71,20 +71,19 @@ TreeView adds more props to add/delete items:
 | onAddNode       | function onAddNode(nodes, text, id) - user adds a node.  |
 
 
-## Data model
+## Data Model
 
 The tree is actually not really a tree but a forest - the root element is a
 list of nodes. Each node is an object with some known properties:
 
  - id: int - must be unique and > 0.
- - data: object - the node's properties. By default just the user
-   visible label *data.name* is defined. *data.icon* is reserved.
+ - name: string - the user visible label.
  - children: list [node] -  child list, possibly [].
  - collapsed: boolean - if child list is displayed or not.
  - editing: boolean - if node is currently being edited.
 
 The tree operations does not interfere with whatever other node
-properties defined.
+properties defined. However, the *icon* property is reserved for future use.
 
 ## Options
 
@@ -122,17 +121,23 @@ All operations are done locally without waiting for server response. If the serv
 update fails, there is an ErrorMessage component which can be used. By default,
 it displays a red box in the bottom-right display corner.
 
-All changes of data triggers a call to the onChange function property. The other
-function properties are also called as appropriate. User could use any way to
-keep server updated.
+All changes of data triggers a call to the onChange function property. The
+other function properties are also called as appropriate. User could use any
+way to keep server updated.
 
 ## Caveats
 
-react-dnd-tree uses css modules. config/webpack\*.conf has been updated to support
-this, and it shouldn't be a concern unless cloning the code.
+react-dnd-tree uses css modules. config/webpack\*.conf has been updated to
+support this, and it shouldn't be a concern unless cloning the code.
 
-The dnd capabilities depends os a single, global DragDropContext. The Treeview and
-teh UIBasicTree components defines such a context, and using any of these makes it
-impossible to use dnd in other parts of the application. You might want to use
-BasicTree, AddTool and Trashcan and declare the DragDropContext in the main app
-should this became a problem.
+The dnd capabilities depends on a single, global DragDropContext. The
+Treeview and the UIBasicTree components defines such a context, and using
+any of these makes it impossible to use dnd in other parts of the
+application. You might want to use BasicTree, AddTool and Trashcan and
+declare the DragDropContext in the main app should this became a problem.
+
+## License
+
+This work is copyright(c) Alec Leamas 2016. It can be used according to the
+GPL 2.0 license as described in LICENSE.html or any later version of the GPL
+license.
