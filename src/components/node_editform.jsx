@@ -13,15 +13,16 @@ class NodeEditForm extends Component {
 
     render() {
         const node = this.props.node;
-        const callback = function(id, event) {
-            this.props.onEdit(node.id, {name: event.target.value});
-        }.bind(this, node.id);
+        const callback = function(node, event) {
+            node.name = event.target.value;
+            this.props.onEdit(node);
+        }.bind(this, node);
         return (
             <span className={styles.outerSpan}>
                 <form>
                     <input
                         type="text"
-                        value={node.data.name}
+                        value={node.name}
                         ref="nameInput"
                         onChange={callback} />
                 </form>

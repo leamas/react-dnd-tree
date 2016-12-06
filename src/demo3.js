@@ -16,25 +16,25 @@ export default class Demo3 extends Component {
 
     // Function providing a form to edit a node's properties.
     // - node: object - The actual node. See Data Model in README.md.
-    // - onEdit: function(id, data) - callback to invoke when node.data
-    //   changes using node.id as id parameter.
+    // - onEdit: function(node) - callback to invoke when a node's
+    //   properties are changed.
     editForm(node, onEdit) {
-        const outerStyle = {display: 'inline-block' };
-        const nameCallback = function(id, event) {
-            node.data.name = event.target.value;
-            onEdit(node.id, node.data);
-        }.bind(this, node.id);
-        const myValue = node.data.myValue ? node.data.myValue : false;
-        const myCallback = function(id, event) {
-            node.data.myValue = event.target.checked;
-            onEdit(node.id, node.data);
-        }.bind(this, node.id);
+        const outerStyle = {display: 'inline-block'};
+        const nameCallback = function(node, event) {
+            node.name = event.target.value;
+            onEdit(node);
+        }.bind(null, node);
+        const myValue = node.myValue ? node.myValue : false;
+        const myCallback = function(node, event) {
+            node.myValue = event.target.checked;
+            onEdit(node);
+        }.bind(null, node);
         return (
             <span style={outerStyle}>
                 <form>
                     <input
                         type="text"
-                        value={node.data.name}
+                        value={node.name}
                         onChange={nameCallback} />
                     <br />
                     {'My own property'}

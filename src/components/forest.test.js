@@ -12,7 +12,7 @@ test('findNodeById finds an id', () => {
     var data = testdata;
     Forest.initNodes(data);
     const found = Forest.findNodeById(data, 93);
-    expect(found.data.name).toBe("Kulturhuset");
+    expect(found.name).toBe("Kulturhuset");
 });
 
 test('findLargest finds the largest', () => {

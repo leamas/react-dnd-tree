@@ -81,7 +81,7 @@ class _Node extends Component {
         const collapseCallback = function(node) {
             this.props.onSetCollapsed(node.id, !node.collapsed);
         }.bind(this, node);
-        let body = <span style={textStyle}> {node.data.name} </span>;
+        let body = <span style={textStyle}> {node.name} </span>;
         if (node.editing) {
             if ( this.props.options && this.props.options.editForm)
                 body = this.props.options.editForm(node, this.props.onEdit)

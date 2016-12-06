@@ -37,7 +37,7 @@ servers does not and requires the client to use separate functions such as
 onMoveNode or onEdit. Example code in [src/demo4.js](src/demo4.js).
 
 Here is also hooks for users who wants to add more properties than just a name
-to each  node. Using these hooks a user can redefine the form used to edit a
+to each node. Using these hooks a user can redefine the form used to edit a
 node's properties. Example code in [demo3.js](src/demo3.js).
 
 In general, you should be able to pick one of the demos and adapt it by
@@ -55,9 +55,9 @@ methods.
 | Prop        | What                                                           |
 |-------------|----------------------------------------------------------------|
 | contents    | The actual data, see below. Mandatory.                         |
-| onChange    | function onChange(contents) - called when contents is changed  |
-| onEdit      | function onEdit(id, data) - called when user edits a node.     |
-| onMoveNode  | function(newParent, oldparent) - called when user moves a node.|
+| onChange    | function onChange(contents) - called when contents was changed.|
+| onEdit      | function onEdit(node) - called when user edited a node.        |
+| onMoveNode  | function(newParent, oldparent) - called when user moved a node.|
 | options     | General options, see below.                                    |
 
 ## TreeView
@@ -73,8 +73,8 @@ TreeView adds more props to add/delete items:
 
 ## Data model
 
-The tree is actually not really a tree but a forest - the root element is a list of
-nodes. Each node is an object with some known properties:
+The tree is actually not really a tree but a forest - the root element is a
+list of nodes. Each node is an object with some known properties:
 
  - id: int - must be unique and > 0.
  - data: object - the node's properties. By default just the user

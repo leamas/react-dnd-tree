@@ -86,16 +86,18 @@ export default class BasicTree extends Component {
             this.props.onChange(nodes);
     }
 
-    // Given id and an object update node's data. By default,
-    // only data.name is defined; using custom NodeEditForm
+    // Given a node update the forest with new node properties. By default,
+    // only node.name is defined; using custom NodeEditForm
     // might change this.
-    onEdit(id, data) {
-        let nodes = this.props.contents;
-        Forest.setAttribute(nodes, id, 'data', data);
+    onEdit(updatedNode) {
+        let nodes = Forest.map(this.props.contents, function(updatedNode, n) {
+            // eslint-disable-next-line
+            return n.id == updatedNode.id ? updatedNode : n;
+        }.bind(null, updatedNode));
         if (this.props.onChange)
             this.props.onChange(nodes);
         if (this.props.onEdit)
-            this.props.onEdit(id, data);
+            this.props.onEdit(updatedNode);
     }
 
     // Given id and a boolean value update node's editing property.
@@ -111,7 +113,7 @@ export default class BasicTree extends Component {
         const node = nodes[ix];
         if (!node)
             return <div> </div>;
-        let width = (indent + node.data.name.length) * 3 / 4;
+        let width = (indent + node.name.length) * 3 / 4;
         width = '' + width + 'em';
         const nodeStyle = {display: 'block'};
         const key = '' + ix + '-' + node.id;
