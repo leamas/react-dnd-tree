@@ -21,6 +21,10 @@ Main characteristics:
   - Several components available to use the thing in different ways
   - GPL 2.0+ licensed.
 
+## Installation
+
+    npm install @leamas/react-dnd-tree
+
 ## Usage
 
 The tree can be used in different ways. One way is using the UIBasicTree
@@ -39,6 +43,10 @@ onMoveNode or onEdit. Example code in [src/demo4.js](src/demo4.js).
 Here is also hooks for users who wants to add more properties than just a name
 to each node. Using these hooks a user can redefine the form used to edit a
 node's properties. Example code in [demo3.js](src/demo3.js).
+
+Here is also code to customize the way a regular node is rendered e. g., by
+adding a callback invoked when user clicks on a node. Example code in
+[demo5.js](src/demo5.js).
 
 In general, you should be able to pick one of the demos and adapt it by
 implementing the stub routines. It is also possible to combine the basic
@@ -94,6 +102,8 @@ various application configuration:
  - formEdit: function(node, onEdit) - returns a form for editing a node,
    presumable with other properties than just the default name. See
    [src/demo3.js](src/demo3.js).
+ - customBody: function(node, props) - returns a body for the rendered node,
+   replacing the default plain node name. See [src/demo5.js](src/demo5.js).
 
 ## Component structure and classname.
 

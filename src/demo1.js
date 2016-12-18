@@ -1,6 +1,7 @@
 import React, {Component } from 'react';
 import {UIBasicTree, testdata} from './tree.js';
 
+// Demonstrate the basic tree, without add/remove parts.
 export default class Demo1 extends Component {
 
     // Here, we need to fetch data from server.

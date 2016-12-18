@@ -1,6 +1,7 @@
 import React, {Component } from 'react'
 import TreeView, {testdata} from  './tree.js'
 
+// Demonstrate handling of a server not acceptinng bult updates.
 export default class Demo2 extends Component {
 
     // Here, we need to fetch data from server.

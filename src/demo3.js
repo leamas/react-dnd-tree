@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TreeView, {testdata} from './tree.js';
 
+// Demonstrate a customized edit form with a user-defined property.
 export default class Demo3 extends Component {
 
     // Here, we need to fetch data from server.

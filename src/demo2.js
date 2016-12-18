@@ -1,6 +1,8 @@
 import React, {Component } from 'react'
 import TreeView, {testdata} from  './tree.js'
 
+
+// Demonstrate the treeview, basic tree +  add/remove parts.
 export default class Demo2 extends Component {
 
     // Here, we need to fetch data from server.
