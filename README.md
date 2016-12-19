@@ -7,6 +7,12 @@ This page is best viewed at [github](http://github.com/leamas/react-dnd-tree).
 react-dnd-tree is a drag-and-drop and react-based treeview. It focuses on
 the generic tree operations: move, rename, add and delete.
 
+## Last release 0.2.0
+
+  - Update license info.
+  - Add some tests
+  - Add custom node rendering hooks.
+  - Some internal cleanup.
 
 ![Screenshot](misc/screendump.png)
 
