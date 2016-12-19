@@ -154,14 +154,15 @@ export function dropAfterNode(nodes, peerId, id) {
 
 
 // Given an id, delete node. Returns the updated forest.
-export function deleteNode(nodes, id) {
-    let parent = this.findParentNodeById(nodes, id);
-    if (parent.id != -1)
-        nodes = parent.children;
-    nodes = nodes.filter(function (item) {
-        return item.id != id;
+export function deleteNode(forest, id) {
+    const root = {id: -1, name: 'root', children: forest};
+    forest = map([root], function (tree) {
+        tree.children = tree.children.filter(function (child) {
+            return child.id != id
+        })
+        return tree;
     });
-    return nodes;
+    return forest[0].children;
 }
 
 

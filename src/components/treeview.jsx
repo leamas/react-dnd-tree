@@ -41,7 +41,7 @@ class _TreeView extends Component {
     newNode(text = 'Ny kategori') {
         let nodes = this.props.contents;
         const id = Forest.findLargestId(nodes, 0);
-        let node = {id: Number(id) + 1, data: {name: text}, children: []};
+        let node = {id: Number(id) + 1, name: text, children: []};
         nodes.splice(0, 0, node);
         if (this.props.onChange)
             this.props.onChange(nodes);

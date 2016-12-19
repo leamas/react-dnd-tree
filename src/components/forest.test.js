@@ -49,6 +49,14 @@ test('dropAfterNode moves correctly', () => {
     expect(result.node.children.length).toBe(oldlen + 1);
 });
 
+test('deleteNode works', () => {
+    var data = testdata;
+    const node = Forest.findNodeById(data, 203);
+    expect(node.name).toBe("daghemmen");
+    data = Forest.deleteNode(data, 203);
+    expect(Forest.findNodeById(data, 203)).toBe(null);
+});
+
 
 
 
